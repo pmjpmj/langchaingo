@@ -28,7 +28,14 @@ func NewBedrock(opts ...Option) (*Bedrock, error) {
 }
 
 func getProvider(modelID string) string {
-	return strings.Split(modelID, ".")[0]
+	splitModels := strings.Split(modelID, ".")
+	if len(splitModels) > 1 {
+		region := strings.ToLower(splitModels[0])
+		if region == "us" || region == "eu" || region == "ap" || region == "sa" {
+			return splitModels[1]
+		}
+	}
+	return splitModels[0]
 }
 
 // EmbedDocuments implements embeddings.Embedder
