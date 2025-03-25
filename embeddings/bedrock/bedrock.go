@@ -29,7 +29,7 @@ func NewBedrock(opts ...Option) (*Bedrock, error) {
 
 func getProvider(modelID string) string {
 	splitModels := strings.Split(modelID, ".")
-	if len(splitModels) > 1 {
+	if len(splitModels) > 2 {
 		region := strings.ToLower(splitModels[0])
 		if region == "us" || region == "eu" || region == "ap" || region == "sa" {
 			return splitModels[1]
